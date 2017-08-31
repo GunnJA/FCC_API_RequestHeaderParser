@@ -13,7 +13,9 @@ app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
-  console.log("headers",request.headers['user-agent']);
+  console.log(request.headers['x-forwarded-for'].split(",")[0],
+   request.headers['accept-language'].split(",")[0],
+   request.headers['user-agent'].split("(" || ")"))
   response.sendFile(__dirname + '/views/index.html');
 });
 
